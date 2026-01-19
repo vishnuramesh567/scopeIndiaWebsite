@@ -1,0 +1,291 @@
+﻿@media only screen and (max-width: 878px) {
+    #registration_head_container {
+        grid-template-columns: 50% 50%;
+    }
+}
+
+#registration_head_container {
+    display: grid;
+    gap: 1px;
+    background-color: #04145f;
+    padding: 10px 5px 10px 5px;
+    grid-template-columns: 33% 33% 33%;
+}
+    #registration_head_container div {
+        background-color: #ffffff;
+        color: #14267c;
+        text-align: left;
+        padding: 20px;
+        border-radius: 10px;
+        margin: 10px 5px;
+        font-weight: normal;
+        border: 2px solid #c7ac20;
+    }
+
+    #registration_head_container * {
+        font-family:Arial;
+        font-size: 100%;
+        font-weight: 600;
+        border-radius: 7px;
+        border: none;
+    }
+    #registration_head_container .block_element {
+        display: block;
+        width: 100%;
+        margin-bottom: 6px;
+    }
+    #registration_head_container input[type="text"], input[type="email"], input[type="tel"], select, input[type="date"] {
+        border: 1px solid #c3ad23 !important;
+        background-color: #F5F5F5;
+        font-size: 16px !important;
+        padding: 10px;
+        width: 94% !important;
+    }
+
+    #registration_head_container .block_element {
+        display: block;
+        width: 100%;
+        margin-bottom: 6px;
+    }
+
+@media only screen and (max-width: 878px) {
+    #registration_head_container .submit_form {
+        grid-column: span 2;
+    }
+}
+
+#registration_head_container .submit_form {
+    border: none;
+    background-color: transparent;
+    grid-column: span 3;
+    text-align: center;
+}
+    #registration_head_container .submit_form button {
+        font-size: 200%;
+        background: linear-gradient(100deg, #8b8a8a, #acacac);
+        color: white;
+        box-shadow: white 2px 2px 10px;
+        padding: 10px;
+        border: 2px solid gold;
+        text-shadow: blue 2px 1px 5px;
+        cursor: pointer;
+    }
+
+
+    /*==Login page==*/
+
+    .login-page{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+    }
+
+.login-box {
+    width: 360px;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 15px rgba(0,0,0,0.2);
+    position:relative;
+    margin-bottom:25px;
+
+}
+
+    .login-box h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+label {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0 15px 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+
+
+.checkbox-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+    .checkbox-row label {
+       
+        margin-left: 6px;
+        font-size: 14px;
+        font-weight: normal;
+    }
+
+
+.links {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+    .links a {
+        font-size: 14px;
+        text-decoration: underline;
+        color: #005acb;
+    }
+
+.btn {
+    width: 100%;
+    background: #005acb;
+    color: #fff;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+    .btn:hover {
+        background: #0043a1;
+    }
+
+    /*=First time login=*/
+
+
+.login-container {
+    background-color: #ffffff;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+    .login-container h2 {
+        margin-bottom: 25px;
+        color: #1A2041;
+    }
+
+label {
+    display: block;
+    text-align: left;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #1A2041;
+    font-size:medium;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+.btn {
+    width: 100%;
+    padding: 12px;
+    background-color: blue;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+    .btn:hover {
+        background-color: #2f3a6b;
+    }
+
+h1 {
+    text-align: center;
+    color: white;
+}
+
+/*=VerifyOtpForEmail=*/
+.account-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.account-box {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+    .account-box h2 {
+        color: #1A2041;
+        margin-bottom: 20px;
+    }
+
+.form-control {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+    transition: border 0.3s;
+}
+
+    .form-control:focus {
+        border-color: #1A2041;
+        outline: none;
+    }
+
+.btn-success {
+    background-color: darkblue;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+    .btn-success:hover {
+        background-color: darkblue;
+    }
+
+.text-danger {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+/*=Dashboard=*/
+
+.dashboard-card {
+    border-radius: 20px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+    background-color: #fff;
+    height: 100%;
+}
+
+    .dashboard-card:hover {
+        transform: translateY(-5px);
+    }
+
+.dashboard-icon {
+    font-size: 40px;
+    margin-bottom: 15px;
+    color: #ff4d6d;
+}
+
+.btn-rounded {
+    border-radius: 30px;
+}

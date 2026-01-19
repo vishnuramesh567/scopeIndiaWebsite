@@ -1,0 +1,27 @@
+﻿@model ScopeIndiaWebsite.Models.Contact
+
+<div class="contact-container">
+
+    <h2>Contact Us</h2>
+
+    <form asp-action="ContactUs" method="post">
+
+        <label>Your Name</label>
+        <input asp-for="Name" type="text" placeholder="Enter your name" required>
+
+        <label>Email</label>
+        <input asp-for="Email" type="email" placeholder="Enter your email" required>
+
+        <label>Subject</label>
+        <input asp-for="Subject" type="text" placeholder="Enter your Subject" required>
+
+        <label>Message</label>
+        <textarea asp-for="Message" placeholder="Write your message" rows="5" required></textarea>
+
+        <button type="submit" class="btn btn-primary">Send Message</button>
+
+    </form>
+
+   
+
+</div>

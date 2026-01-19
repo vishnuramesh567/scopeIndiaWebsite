@@ -1,0 +1,55 @@
+body {
+    background: url('../Images/scopeindia-bkg.jpg');
+   
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+     font-family: Arial, sans-serif; 
+    scroll-behavior: smooth;
+}
+
+user agent stylesheet
+body {
+    display: block;
+    margin: 8px;
+}
+
+main {
+    padding: 0;
+    margin: 0;
+}
+
+#container_footer {
+    padding: 10px;
+    text-align: center;
+    color: white;
+    min-height: 71px;
+    background: #0a1d7b;
+    line-height: 21px;
+    margin-top:-35px;
+}
+
+footer {
+    font-family: Poppins;
+}
+#container_footer p {
+    display: block;
+    margin: 14px;
+}
+#container_footer .footer_line {
+    font-size: 14px;
+}
+    #container_footer .footer_line a {
+        font-size: inherit;
+        margin: 0px;
+        padding: 10px 10px;
+    }
+
+#container_footer a {
+    text-decoration: none;
+    color: whitesmoke;
+    
+}

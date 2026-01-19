@@ -1,0 +1,124 @@
+﻿@model List<ScopeIndiaWebsite.Models.Course>
+
+@{
+    ViewBag.Title = "Available Courses";
+}
+
+<div class="container py-5">
+    <div class="text-center mb-5 animate__animated animate__fadeInDown">
+        <h1 class="display-4 fw-bold" style="color: #1a237e;">Discover Your Future</h1>
+        <p class="lead text-muted mb-4">
+            Browse our curated selection of courses designed to empower your career growth.
+        </p>
+    </div>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="bi bi-check-circle-fill me-2"></i><strong>Success!</strong> @TempData["Success"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+    @if (TempData["Info"] != null)
+    {
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            <i class="bi bi-info-circle-fill me-2"></i><strong>Heads up!</strong> @TempData["Info"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="bi bi-exclamation-triangle-fill me-2"></i><strong>Error!</strong> @TempData["Error"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 animate__animated animate__fadeInUp">
+        @foreach (var course in Model)
+        {
+            <div class="col">
+                <div class="card h-100 shadow-lg border-0 rounded-4 course-card">
+                    <div class="card-body p-4 d-flex flex-column">
+                        <div class="text-center mb-3">
+                            <span class="badge bg-primary text-white p-2 mb-2 rounded-pill course-badge">
+                                <i class="bi bi-star-fill me-1"></i> Featured
+                            </span>
+                            <h4 class="card-title fw-bold text-dark mb-2">@course.CourseName</h4>
+                        </div>
+                        <ul class="list-unstyled text-muted mb-4 course-info">
+                            <li><i class="bi bi-clock me-2 text-primary"></i> <strong>Duration:</strong> @course.Duration</li>
+                            <li><i class="bi bi-currency-rupee me-2 text-primary"></i> <strong>Fee:</strong> ₹@course.Fee</li>
+                            <li><i class="bi bi-award me-2 text-primary"></i> <strong>Certification:</strong> Yes</li>
+                        </ul>
+                        <div class="mt-auto text-center">
+                            <form asp-action="SignUp" method="post">
+                                <input type="hidden" name="courseId" value="@course.Id" />
+                                <button type="submit" class="btn btn-primary btn-lg w-100 fw-bold">
+                                    Enroll Now <i class="bi bi-arrow-right"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="text-center mt-5 animate__animated animate__fadeInUp">
+        <a href="/Student/Dashboard" class="btn btn-outline-secondary btn-lg px-5 rounded-pill">
+            <i class="bi bi-arrow-left me-2"></i> Go to Dashboard
+        </a>
+    </div>
+</div>
+
+<style>
+    /* Google Fonts for a modern look */
+    @@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #f8f9fa; /* Light grey background */
+    }
+
+    /* Card Styling with a subtle hover effect */
+    .course-card {
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        border: 1px solid #e0e0e0;
+    }
+
+        .course-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.1) !important;
+        }
+
+    /* Button and Badge Styling */
+    .btn-primary {
+        background-color: #1a237e;
+        border-color: #1a237e;
+        transition: all 0.3s ease;
+    }
+
+        .btn-primary:hover {
+            background-color: #3949ab;
+            border-color: #3949ab;
+            transform: translateY(-2px);
+        }
+
+    .course-badge {
+        background-color: #4CAF50 !important; /* A vibrant green for badges */
+    }
+
+    /* List Item Styling */
+    .course-info li {
+        padding: 5px 0;
+    }
+
+    /* Animations from animate.css */
+    .animate__animated {
+        visibility: visible !important;
+    }
+</style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">

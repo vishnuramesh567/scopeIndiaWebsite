@@ -1,0 +1,81 @@
+﻿@{
+    ViewData["Title"] = "Verify OTP for Email";
+}
+
+<style>
+    /* body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #1A2041, #2f3a6b);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    } */
+
+    .account-container {
+        width: 100%;
+        max-width: 400px;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    .account-box {
+        background: #ffffff;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        text-align: center;
+    }
+
+        .account-box h2 {
+            color: #1A2041;
+            margin-bottom: 20px;
+        }
+
+    .form-control {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 15px;
+        transition: border 0.3s;
+    }
+
+        .form-control:focus {
+            border-color: #1A2041;
+            outline: none;
+        }
+
+    .btn-success {
+        background-color: darkblue;
+        border: none;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+
+        .btn-success:hover {
+            background-color: darkblue;
+        }
+
+    .text-danger {
+        color: red;
+        font-size: 14px;
+        margin-top: 10px;
+    }
+</style>
+
+<div class="account-container" style="margin-left:450px;">
+    <div class="account-box">
+        <h2>Enter OTP</h2>
+        <form asp-action="VerifyOtpForEmail" method="post">
+            <input type="text" name="otpInput" class="form-control" placeholder="Enter OTP" required />
+            <button type="submit" class="btn btn-success w-100 p-2">Verify OTP</button>
+            <p class="text-danger">@ViewBag.Error</p>
+        </form>
+    </div>
+</div>

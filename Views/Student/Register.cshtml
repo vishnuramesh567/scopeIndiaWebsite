@@ -1,0 +1,224 @@
+﻿@model ScopeIndiaWebsite.Models.Student
+@{
+    var selectedHobbies = new string[] { };
+    if (Model != null && !string.IsNullOrEmpty(Model.reg_hobbies))
+    {
+        selectedHobbies = Model.reg_hobbies.Split(',');
+    }
+}
+@if (Model != null && Model.Avatar != null && Model.Avatar.Length > 0)
+{
+    <span class="text-success">Avatar already uploaded ✔</span>
+}
+
+<section id="container_page_intro">
+    <div>
+        <h1>Course Registration at SCOPE INDIA</h1>
+        <h2>Center for Software, Networking, &amp; Cloud Education</h2>
+        <h3>One of India's best Training destinations for Software, Networking, DevOps and Cloud Computing courses with 18 years of Industrial experience. Over 1,000 students find their dream careers each year, and we have assisted more than 15,000 students so far.</h3>
+
+    </div>
+</section>
+<form asp-controller="Student" asp-action="Register" method="POST" enctype="multipart/form-data">
+    <section id="registration_head_container">
+
+        <div>
+            <label asp-for="reg_first_name">First Name</label>
+            <input asp-for="reg_first_name" />
+            <span asp-validation-for="reg_first_name" class="text-danger"></span>
+        </div>
+
+        <div>
+            <label asp-for="reg_last_name">Last Name</label>
+            <input asp-for="reg_last_name" />
+            <span asp-validation-for="reg_last_name" class="text-danger"></span>
+        </div>
+
+        <div>
+            <label asp-for="reg_date_of_birth">Date of Birth</label>
+            <input asp-for="reg_date_of_birth" type="date" />
+            <span asp-validation-for="reg_date_of_birth" class="text-danger"></span>
+        </div>
+
+        <div>
+            <label>Gender</label><br />
+            <input type="radio" asp-for="Gender" value="Male" /> Male
+            <input type="radio" asp-for="Gender" value="Female" /> Female
+            <input type="radio" asp-for="Gender" value="Other" /> Other
+            <span asp-validation-for="Gender" class="text-danger"></span>
+        </div>
+
+        <div>
+            <label asp-for="reg_mobile_number">Mobile Number</label>
+            <input asp-for="reg_mobile_number" />
+            <span asp-validation-for="reg_mobile_number" class="text-danger"></span>
+        </div>
+
+        <div>
+            <label asp-for="reg_email">Email</label>
+            <input asp-for="reg_email" />
+            <span asp-validation-for="reg_email" class="text-danger"></span>
+        </div>
+
+        <div>
+            <label asp-for="reg_country">Country</label>
+            <select asp-for="reg_country" id="Country" class="form-control">
+                <option value="">Select Country</option>
+            </select>
+            <span asp-validation-for="reg_country" class="text-danger"></span>
+        </div>
+
+        <div>
+            <label asp-for="reg_state">State</label>
+            <select asp-for="reg_state" id="State" class="form-control">
+                <option value="">Select State</option>
+            </select>
+            <span asp-validation-for="reg_state" class="text-danger"></span>
+        </div>
+
+        <div>
+            <label asp-for="reg_city">City</label>
+            <select asp-for="reg_city" id="City" class="form-control">
+                <option value="">Select City</option>
+            </select>
+            <span asp-validation-for="reg_city" class="text-danger"></span>
+        </div>
+
+        <div>
+            <label>Hobbies[Select any two]</label><br />
+            @foreach (var hobby in new[] { "reading", "sports", "music", "travel", "gaming" })
+            {
+                <label>
+                    <input type="checkbox" name="SelectedHobbies"
+                           value="@hobby"
+                           @(selectedHobbies.Contains(hobby) ? "checked" : "") />
+                    @hobby
+                </label>
+            }
+        </div>
+
+
+        <div>
+            <label asp-for="AvatarFile"></label>
+            <input type="file" asp-for="AvatarFile" accept="image/*" />
+            @if (Model != null && Model.Avatar != null && Model.Avatar.Length > 0)
+            {
+                <span class="text-success">Avatar already uploaded ✔</span>
+            }
+        </div>
+        <span asp-validation-for="AvatarFile" class="text-danger"></span>
+
+
+        <div class="submit_form">
+            <button type="submit">Complete Registration >></button>
+        </div>
+
+    </section>
+</form>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    $(document).ready(function () {
+        var selectedCountry = '@(Model?.reg_country)';
+        var selectedState = '@(Model?.reg_state)';
+        var selectedCity = '@(Model?.reg_city)';
+
+        function loadCountries() {
+            $.get("https://countriesnow.space/api/v0.1/countries", function (data) {
+                var countrySelect = $("#Country");
+                countrySelect.empty().append("<option value=''>Select Country</option>");
+                data.data.forEach(function (val) {
+                    countrySelect.append("<option value='" + val.country + "'>" + val.country + "</option>");
+                });
+                if (selectedCountry) {
+                    countrySelect.val(selectedCountry).trigger("change");
+                }
+            });
+        }
+
+        $("#Country").change(function () {
+            var countryName = $(this).val();
+            var stateSelect = $("#State");
+            stateSelect.empty().append("<option value=''>Select State</option>");
+            $("#City").empty().append("<option value=''>Select City</option>");
+
+            if (countryName) {
+                $.post("https://countriesnow.space/api/v0.1/countries/states", { country: countryName }, function (res) {
+                    res.data.states.forEach(function (val) {
+                        stateSelect.append("<option value='" + val.name + "'>" + val.name + "</option>");
+                    });
+                    if (selectedState) {
+                        stateSelect.val(selectedState).trigger("change");
+                    }
+                });
+            }
+        });
+
+        $("#State").change(function () {
+            var stateName = $(this).val();
+            var countryName = $("#Country").val();
+            var citySelect = $("#City");
+            citySelect.empty().append("<option value=''>Select City</option>");
+
+            if (stateName) {
+                $.post("https://countriesnow.space/api/v0.1/countries/state/cities",
+                    { country: countryName, state: stateName },
+                    function (res) {
+                        res.data.forEach(function (val) {
+                            citySelect.append("<option value='" + val + "'>" + val + "</option>");
+                        });
+                        if (selectedCity) {
+                            citySelect.val(selectedCity);
+                        }
+                    });
+            }
+        });
+
+        loadCountries();
+
+        // Intercept form submission to add SweetAlert validation
+        $("#registerBtn").click(function (e) {
+            // Prevent the default form submission
+            e.preventDefault();
+
+            // Check if the form is valid using the browser's built-in validation
+            if ($("form")[0].checkValidity()) {
+                // Form is valid, show the confirmation pop-up
+                Swal.fire({
+                    title: 'Confirm Registration',
+                    text: "Do you want to complete registration?",
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes, Register',
+                    cancelButtonText: 'Cancel'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Show a success pop-up, then submit the form
+                        Swal.fire({
+                            title: 'Success!',
+                            text: 'You have registered successfully!',
+                            icon: 'success',
+                            confirmButtonText: 'OK'
+                        }).then(() => {
+                            // After the user clicks "OK", submit the form
+                            $("form").submit();
+                        });
+                    }
+                });
+            } else {
+                // Form is not valid, show an error pop-up
+                Swal.fire({
+                    title: 'Incomplete Fields',
+                    text: 'Please fill out all required fields before registering.',
+                    icon: 'warning',
+                    confirmButtonText: 'OK'
+                });
+
+                // This ensures that the browser's native validation messages are also shown
+                $("form")[0].reportValidity();
+            }
+        });
+    });
+</script>

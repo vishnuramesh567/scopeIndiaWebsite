@@ -1,0 +1,94 @@
+﻿@{
+    ViewBag.Title = "Verify OTP";
+}
+
+@model ScopeIndiaWebsite.Models.FirstTimeLogin
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Login</title>
+    <style>
+        /* body {
+            background-color: #1A2041;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        } */
+
+        .login-container {
+            background-color: #ffffff;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+            .login-container h2 {
+                margin-bottom: 25px;
+                color: #1A2041;
+            }
+
+        label {
+            display: block;
+            text-align: left;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #1A2041;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background-color: blue;
+            border: none;
+            border-radius: 6px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+            .btn:hover {
+                background-color: #2f3a6b;
+            }
+
+        h1 {
+            text-align: center;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container" style="margin-left:400px;">
+        <form asp-action="VerifyOtp" method="post" enctype="multipart/form-data">
+            <h3 style="color:black;font-weight:bolder;padding:20px;">Verify OTP</h3>
+            <div>
+                <label for="email">Enter OTP</label>
+                <input type="text" name="otpInput" id="otpInput" class="form-control" placeholder="Enter OTP" required />
+            </div>
+            <button type="submit" class="btn">Verify</button>
+            <p style="color:red">@ViewBag.Error</p>
+        </form>
+    </div>
+
+    @section Scripts {
+        <partial name="_ValidationScriptsPartial.cshtml" />
+    }
+</body>
+</html>

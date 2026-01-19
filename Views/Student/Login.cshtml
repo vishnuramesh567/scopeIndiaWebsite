@@ -1,0 +1,158 @@
+﻿<section id="container_page_intro">
+    <div>
+        <h1>Login at SCOPE&nbsp;INDIA</h1>
+
+    </div>
+</section>
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+
+    <title>Student Login</title>
+    <style>
+        /* body {
+            background-color: #1A2041;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        } */
+
+        .login-container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+        }
+
+            .login-container h2 {
+                text-align: center;
+                margin-bottom: 25px;
+                color: #1A2041;
+            }
+
+        .form-control {
+            width: 100%;
+            padding: 10px 15px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #1A2041;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+            .checkbox-container input[type="checkbox"] {
+                margin-right: 10px;
+                width: auto;
+            }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #1A2041;
+            border: none;
+            border-radius: 6px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+            .btn:hover {
+                background-color: #2e3a73;
+            }
+
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 2px;
+            margin-bottom: 5px;
+        }
+    </style>
+
+<body>
+    <div class="login-container" style="margin-left:400px;">
+        <h2 style="font-weight:bolder;">Login</h2>
+        <form asp-action="Login" method="post" enctype="multipart/form-data">
+            <div>
+                <label for="email">Email</label>
+                <input type="text" name="email" id="email" class="form-control"
+                       placeholder="Enter your email address"
+                       value="@ViewBag.EmailValue" required />
+            </div>
+            <div>
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" class="form-control" placeholder="Enter your password" required />
+
+                @* Show general login error inside the box *@
+                @if (ViewBag.LoginError != null)
+                {
+                    <span class="error-message">@ViewBag.LoginError</span>
+                }
+
+                @if (ViewBag.PasswordError != null)
+                {
+                    <span class="error-message">@ViewBag.PasswordError</span>
+                }
+            </div>
+
+            <div class="checkbox-container">
+                <input type="checkbox" name="keepMeLoggedIn" value="true" id="check" />
+                <label for="check">Keep me logged in</label>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <a href="https://localhost:7183/Student/FirstTimeLogin">First time login</a>
+                </div>
+                <div class="col">
+                    <a href="https://localhost:7183/Student/VerifyEmail">Forgot password?</a>
+                </div>
+            </div>
+
+            <button type="submit" class="btn" style="width: 330px;height:50px;font-size:22px;margin-top:30px; color:white;background-color:darkblue">Login</button>
+
+            @if (ViewBag.EmailError != null)
+            {
+                <p class="error-message" style="text-align:center;">@ViewBag.EmailError</p>
+            }
+            @if (ViewBag.DebugHash != null)
+            {
+                <p style="color:red; font-size:12px; word-break:break-all;">@ViewBag.DebugHash</p>
+            }
+        </form>
+    </div>
+
+    @section Scripts {
+        <partial name="_ValidationScriptsPartial.cshtml" />
+    }
+</body>
+
+
+
+
+
+

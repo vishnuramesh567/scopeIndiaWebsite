@@ -1,0 +1,108 @@
+﻿@model ScopeIndiaWebsite.Models.Student
+@{
+    ViewData["Title"] = "Student Dashboard";
+}
+@{
+    Layout = "_Layout"; // Or whatever your layout file is called
+}
+<script type="text/javascript">
+    window.onpageshow = function(event) {
+        if (event.persisted) {
+            // This code runs when the page is restored from the browser's cache (e.g., via the back button).
+            // It forces an immediate redirect to the login page.
+            window.location.href = '@Url.Action("Login", "ViewPages")';
+        }
+    };
+</script>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <style>
+        .dashboard-card {
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            background-color: #fff;
+            height: 100%;
+        }
+
+            .dashboard-card:hover {
+                transform: translateY(-5px);
+            }
+
+        .dashboard-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+            color: #ff4d6d;
+        }
+
+        .btn-rounded {
+            border-radius: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="text-center">
+            <h2 class="mb-2">Welcome @Model.reg_first_name @Model.reg_last_name ! </h2>
+            <p class="text-muted">Stay on track with your learning journey.</p>
+        </div>
+        <div class="row justify-content-center mt-4">
+
+            <div class="col-md-4 mb-4">
+                <div class="dashboard-card">
+                    <div class="dashboard-icon"><i class="fas fa-search"></i></div>
+                    <h5>Search Courses</h5>
+                    <p>Explore and enroll in available courses</p>
+                    <a asp-controller="Coourse" asp-action="Index" class="btn btn-danger btn-block btn-rounded">Search Now</a>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="dashboard-card">
+                    <div class="dashboard-icon"><i class="fas fa-book-reader"></i></div>
+                    <h5>My Courses</h5>
+                    <p>View your enrolled courses</p>
+                    <a asp-controller="Coourse" asp-action="MyCourses" class="btn btn-danger btn-block btn-rounded">Go There</a>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="dashboard-card">
+                    <div class="dashboard-icon"><i class="fas fa-user-edit"></i></div>
+                    <h5>Edit Profile</h5>
+                    <p>Update your personal details</p>
+                    <a asp-controller="Student" asp-action="EditProfile" class="btn btn-danger btn-block btn-rounded">Edit Profile</a>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="dashboard-card">
+                    <div class="dashboard-icon"><i class="fas fa-key"></i></div>
+                    <h5>Change Password</h5>
+                    <p>Keep your account secure</p>
+                    <a href="/Student/SwitchPassword" class="btn btn-warning btn-block btn-rounded">Change Password</a>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="dashboard-card">
+                    <div class="dashboard-icon"><i class="fas fa-sign-out-alt"></i></div>
+                    <h5>Logout</h5>
+                    <p>Sign out from your session</p>
+                    <form method="post" asp-controller="Student" asp-action="Logout">
+                        <button type="submit" class="btn btn-dark btn-block btn-rounded">Logout</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
